@@ -2,14 +2,25 @@ import heapq
 
 class SokobanState:
     def __init__(self, player, boxes, cost=0, parent=None, move=None):
-        self.player = player  # (row, col) del jugador
-        self.boxes = frozenset(boxes)  # Conjunto de posiciones de cajas
-        self.cost = cost  # Costo g(n)
-        self.parent = parent  # Estado padre
-        self.move = move  # Movimiento realizado
+        
+        """
+        Inicializa un estado del juego de Sokoban.
+        
+        player: Tupla (fila, columna) que representa la posición del jugador.
+        boxes: Conjunto inmutable de posiciones de las cajas.
+        cost: Costo acumulado del estado.
+        parent: Estado padre desde el cual se llegó a este estado.
+        move: Movimiento realizado para llegar a este estado.
+        """
+        self.player = player  
+        self.boxes = frozenset(boxes) 
+        self.cost = cost  
+        self.parent = parent  
+        self.move = move  
         self.heuristic = self.calculate_heuristic()  # h(n)
     
     def __lt__(self, other):
+        """ Priority queue comparison based on f(n) = g(n) + h(n) """
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
     
     def calculate_heuristic(self):
@@ -18,7 +29,7 @@ class SokobanState:
     
     def get_successors(self):
         successors = []
-        moves = {"Up": (-1, 0), "Down": (1, 0), "Left": (0, -1), "Right": (0, 1)}
+        moves = {"Arriba": (-1, 0), "Abajo": (1, 0), "Izquierda": (0, -1), "Derecha": (0, 1)}
         
         for move, (dr, dc) in moves.items():
             new_player = (self.player[0] + dr, self.player[1] + dc)
@@ -39,6 +50,12 @@ class SokobanState:
         return successors
 
 def a_star_sokoban(start_state):
+    """
+    Implementa el algoritmo A* para resolver el problema de Sokoban.
+    
+    start_state: Estado inicial del juego.
+    return: Lista de movimientos que llevan a la solución o None si no hay solución.
+    """
     open_set = []
     closed_set = set()
     heapq.heappush(open_set, start_state)
@@ -62,7 +79,7 @@ def a_star_sokoban(start_state):
     
     return None  # No hay solución
 
-# Definir el grid y los estados iniciales
+# Grid y los estados iniciales
 grid = [
     "#####", 
     "#P  #", 
@@ -70,9 +87,9 @@ grid = [
     "# G #", 
     "#####" ]
 
-goals = {(3, 2)}
-initial_player = (1, 1)
-initial_boxes = {(2, 2)}
+goals = {(3, 2)} # objetivo
+initial_player = (1, 1) # posicion inicial player
+initial_boxes = {(2, 2)} # posicion inicial boxes
 
 start_state = SokobanState(initial_player, initial_boxes)
 solution = a_star_sokoban(start_state)
