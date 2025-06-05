@@ -91,9 +91,9 @@ grid = [
     "# G  #",
     "######" ]
 
-goals = {(3, 2), (4, 2)} # objetivo
-initial_player = (1, 2) # posicion inicial player
-initial_boxes = {(2, 2), (2, 3)} # posicion inicial boxes
+goals = {(3, 2), (4, 2)}             # objetivo
+initial_player = (1, 2)              # posicion inicial player
+initial_boxes = {(2, 2), (2, 3)}     # posicion inicial boxes
 
 # Crea el estado inicial, ejecuta la búsqueda A, y muestra la solución encontrada como una lista de movimientos.*
 start_state = SokobanState(initial_player, initial_boxes)
