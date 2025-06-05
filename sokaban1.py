@@ -1,3 +1,11 @@
+'''
+Este código busca resolver automáticamente un nivel del juego Sokoban utilizando el algoritmo de búsqueda A*. 
+Modela el estado del juego con la posición del jugador y las cajas, genera posibles movimientos válidos (incluyendo empujar cajas), 
+evalúa cada estado con una heurística basada en la distancia Manhattan a los objetivos, 
+y explora sistemáticamente los estados para encontrar la secuencia mínima de movimientos que lleve a todas las cajas 
+a sus posiciones objetivo, devolviendo la solución si existe.
+'''
+
 # Importa la librería heapq para manejar una cola de prioridad utilizada en el algoritmo A*.
 import heapq
 
