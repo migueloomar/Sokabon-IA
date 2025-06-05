@@ -20,7 +20,8 @@ class SokobanState:
         self.move = move  
         self.heuristic = self.calculate_heuristic()  # h(n)
 
-    # Define el método __lt__ para comparar estados en la cola de prioridad según la función f(n) = g(n) + h(n), donde g(n) es el costo y h(n) la heurística.
+    # Define el método __lt__ para comparar estados en la cola de prioridad según la función 
+    # f(n) = g(n) + h(n), donde g(n) es el costo y h(n) la heurística.
     def __lt__(self, other):
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
         
@@ -79,7 +80,8 @@ def a_star_sokoban(start_state):
     
     return None  
 
-# Define el mapa del nivel Sokoban como una lista de cadenas, la posición objetivo, la posición inicial del jugador y las posiciones iniciales de las cajas.
+# Define el mapa del nivel Sokoban como una lista de cadenas, la posición objetivo, 
+# la posición inicial del jugador y las posiciones iniciales de las cajas.
 grid = [
     "#####", 
     "#P  #", 
